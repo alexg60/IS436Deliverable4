@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summit Ridge | IT Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./summit_ridge_it_ticketing.css" />
+    <link rel="stylesheet" href="./summit_ridge_dashboard.css" />
+</head>
+<body class="dashboard-body">
+    <div class="bg-grid"></div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast">SYSTEM UPDATED</div>
+
+   
+    <div id="app-shell" class="flex h-screen relative z-10">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-72 sidebar-panel flex flex-col p-8">
+            <div class="flex items-center gap-4 mb-14">
+                <div class="brand-icon-sq">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d5a55b" stroke-width="2.5"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.62 1.96v13.16a2 2 0 0 0 1.56 1.95l8 2.25a2 2 0 0 0 .88 0l8-2.25a2 2 0 0 0 1.56-1.95V5.42a2 2 0 0 0-1.62-1.96z"/></svg>
+                </div>
+                <div>
+                    <span class="block text-[0.55rem] uppercase tracking-[0.2em] text-[#d5a55b] font-bold">Summit Ridge</span>
+                    <strong class="block text-xs uppercase font-black tracking-tight">IT Portal</strong>
+                </div>
+            </div>
+
+            <nav class="flex-1 space-y-2">
+                <button onclick="switchTab('tickets')" id="nav-tickets" class="sidebar-item active w-full flex items-center gap-4 px-5 py-4 font-bold text-sm">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Tickets
+                </button>
+                <button onclick="switchTab('inventory')" id="nav-inventory" class="sidebar-item w-full flex items-center gap-4 px-5 py-4 font-bold text-sm">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    Inventory
+                </button>
+                <button onclick="switchTab('history')" id="nav-history" class="sidebar-item w-full flex items-center gap-4 px-5 py-4 font-bold text-sm">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    My History
+                </button>
+            </nav>
+
+            <div class="mt-auto pt-6 border-t border-[#f0e7d610]">
+                <div class="flex items-center gap-3">
+                    <div id="user-avatar" class="user-pill-avatar">AD</div>
+                    <div class="flex-1 min-w-0">
+                        <p id="user-name" class="text-xs font-black truncate">Admin User</p>
+                        <p id="user-role" class="text-[9px] text-[#d1c7b2] uppercase tracking-tighter">Systems Lead</p>
+                    </div>
+                    <a href="./summit_ridge_login.html" class="text-[#d1c7b2] hover:text-[#d5a55b]">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN AREA -->
+        <main class="flex-1 overflow-y-auto p-12">
+            <div class="max-w-6xl mx-auto">
+                <header class="flex justify-between items-end mb-12">
+                    <div>
+                        <span id="current-location" class="text-[0.65rem] uppercase tracking-[0.2em] text-[#d5a55b] font-black mb-2 block">Central Operations</span>
+                        <h1 id="view-title" class="dashboard-title">Tickets</h1>
+                    </div>
+                    <button class="btn btn-primary">
+                        + New Request
+                    </button>
+                </header>
+
+                <!--Tickets VIEW -->
+                <div id="view-tickets" class="view-container active space-y-8">
+                    <div class="search-bar-glass rounded-2xl px-6 py-4 flex items-center gap-4">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d5a55b" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" placeholder="Search ticket..." class="bg-transparent border-none w-full text-sm">
+                    </div>
+                    <div id="ticket-list" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                        <!-- Dynamic Tickets -->
+                    </div>
+                </div>
+
+          
+<!-- INVENTORY VIEW -->
+<div id="view-inventory" class="view-container">
+    <div class="inventory-split-grid">
+        
+        <!-- Hardware Fleet Panel -->
+        <div class="panel">
+            <div class="panel-header-inline">
+                <h3 class="inventory-panel-title">Hardware</h3>
+                <span class="eyebrow">Assets</span>
+            </div>
+            <div class="table-responsive">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Tag</th>
+                            <th>Model</th>
+                            <th>User</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fleet-table-body">
+                        <!-- Data injected by JS -->
+                        <tr><td>#SR-H102</td><td>MacBook Air M2</td><td>David</td></tr>
+                        <tr><td>#SR-H105</td><td>MacBook Pro M3</td><td>Sarah</td></tr>
+                        <tr><td>#SR-H109</td><td>Dell Precision</td><td><em class="status-available">Available</em></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Software Licenses Panel -->
+        <div class="panel">
+            <div class="panel-header-inline">
+                <h3 class="inventory-panel-title">Software Licenses</h3>
+                <span class="eyebrow">SaaS</span>
+            </div>
+            <div class="table-responsive">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Assigned</th>
+                            <th>Available</th>
+                        </tr>
+                    </thead>
+                    <tbody id="license-table-body">
+                        <!-- Data injected by JS -->
+                        <tr><td>Adobe Suite</td><td>14</td><td>6</td></tr>
+                        <tr><td>IntelliJ IDEA</td><td>8</td><td>2</td></tr>
+                        <tr><td>GitHub Copilot</td><td>22</td><td>28</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+                <!-- HISTORY VIEW -->
+                <div id="view-history" class="view-container active space-y-8">
+                    <div id="history-list" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                        <!-- Dynamic Tickets -->
+                    </div>
+                </div>
+
+    <script src="./summit_ridge.js"></script>
+</body>
+</html>
