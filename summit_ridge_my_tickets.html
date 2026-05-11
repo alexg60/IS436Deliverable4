@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Tickets | Summit Ridge</title>
+  <link rel="stylesheet" href="./summit_ridge_it_ticketing_homepage.css" />
+</head>
+<body data-page="tickets">
+  <div class="tickets-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-copy">
+          <span>Summit Ridge</span>
+          <strong>My Tickets</strong>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <p class="topbar-note">Employees see their own tickets, while admins can review the full ticket queue.</p>
+        <a href="./summit_ridge_it_ticketing_homepage.html" class="login-btn">Back Home</a>
+      </div>
+    </header>
+
+    <section class="panel tickets-hero">
+      <div class="tickets-hero-card">
+        <span class="eyebrow">Ticket View</span>
+        <h1>Track the requests assigned to you or submitted by you.</h1>
+        <p class="section-text">
+          This page now responds to the logged-in role. Admins can see all tickets, while other users only see tickets connected to their account.
+        </p>
+      </div>
+    </section>
+
+    <section class="tickets-summary">
+      <div class="summary-card">
+        <strong data-summary-total>0</strong>
+        <span>Visible sample tickets</span>
+      </div>
+      <div class="summary-card">
+        <strong data-summary-progress>0</strong>
+        <span>Currently in progress</span>
+      </div>
+      <div class="summary-card">
+        <strong data-summary-pending>0</strong>
+        <span>Awaiting follow-up</span>
+      </div>
+    </section>
+
+    <section class="panel tickets-panel">
+      <span class="eyebrow">Available Tickets</span>
+      <h2 class="section-title" data-ticket-heading>Example results for one user</h2>
+      <p class="section-text" data-ticket-empty hidden></p>
+      <div class="ticket-table-wrap">
+        <table class="ticket-table">
+          <thead>
+            <tr>
+              <th>Ticket</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Device</th>
+              <th>Updated</th>
+              <th data-admin-actions-header hidden>Actions</th>
+            </tr>
+          </thead>
+          <tbody data-ticket-table-body></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</body>
+<script src="./app.js"></script>
+</html>
